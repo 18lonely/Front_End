@@ -1,0 +1,254 @@
+<html lang="vi">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Đăng nhập
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            width: 800px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .left {
+            background-color: #ffe6e6;
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .left img {
+            width: 100%;
+            max-width: 300px;
+        }
+        .left p {
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .right {
+            background-color: #fff;
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .right h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .right .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .right .input-group input {
+            width: 100%;
+            padding: 10px 10px 10px 40px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .right .input-group i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ccc;
+        }
+        .right .input-group.password i.fa-eye-slash {
+            right: 10px;
+            left: auto;
+            cursor: pointer;
+        }
+        .right .btn {
+            background-color: #ff4d4d;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .right .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .right .options a {
+            color: #ff4d4d;
+            text-decoration: none;
+        }
+        .right .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .right .divider::before, .right .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ccc;
+        }
+        .right .divider::before {
+            margin-right: .25em;
+        }
+        .right .divider::after {
+            margin-left: .25em;
+        }
+        .right .social-login {
+            display: flex;
+            flex-direction: column;
+        }
+        .right .social-login button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            background-color: #fff;
+        }
+        .right .social-login button i {
+            margin-right: 10px;
+        }
+        .right .footer {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .right .footer a {
+            color: #ff4d4d;
+            text-decoration: none;
+        }
+  </style>
+ </head>
+ <body>
+  <div class="container">
+   <div class="left">
+    <img alt="Illustration of a person sitting on a red couch with a laptop, a dog sleeping nearby, and books scattered around" height="300" src="https://storage.googleapis.com/a1aa/image/giDlt0tkz37iGl0SUFMPSPVdeqggTjZrpE1Q43xw9Macwa1JA.jpg" width="300"/>
+    <p>
+     Tìm nhà đất
+     <br/>
+     Batdongsan.com.vn dẫn lối
+    </p>
+   </div>
+   <div class="right">
+    <h2>
+    <% if (typeof(message) != "undefined") { %>
+        <span style="color: blue"> <%- message %></span><br>
+    <% } %>
+     Đăng nhập
+    </h2>
+    <form class="form-control" action="/login" method="POST">
+        <div class="input-group">
+            <i class="fas fa-user">
+            </i>
+            <input placeholder="Email" type="text" id="email" name="email"
+                <% if (typeof(body) !== "undefined") { %>
+                    value="<%- body.email %>"
+                <% } %>
+            />
+           </div>
+           <% if (typeof(errs) !== "undefined") { %>
+                <p style="color: red; font-size: 12px"><%- errs.emailMsg %></p>
+            <% } %>
+           <div class="input-group password">
+            <i class="fas fa-lock">
+            </i>
+            <input placeholder="Mật khẩu" type="password" id="password" name="password"
+                <% if (typeof(body) !== "undefined") { %>
+                    value="<%- body.password %>"
+                <% } %>
+            />
+            <i class="fas fa-eye-slash">
+            </i>
+           </div>
+           <% if (typeof(errs) !== "undefined") { %>
+                <p style="color: red; font-size: 12px"><%- errs.passwordMsg %></p>
+            <% } %>
+           <button class="btn">
+            Đăng nhập
+           </button>
+           <% if (typeof(message) !== "undefined") { %>
+                <p style="color: red; font-size: 12px"><%- message %></p>
+            <% } %>
+    </form>
+    <div class="options">
+     <label>
+      <input type="checkbox"/>
+      Nhớ tài khoản
+     </label>
+     <a href="#">
+      Quên mật khẩu?
+     </a>
+    </div>
+    <div class="divider">
+     Hoặc
+    </div>
+    <div class="social-login">
+     <button>
+      <i class="fab fa-apple">
+      </i>
+      Đăng nhập với Apple
+     </button>
+     <button>
+      <i class="fab fa-facebook">
+      </i>
+      Đăng nhập với Facebook
+     </button>
+     <button>
+      <i class="fab fa-google">
+      </i>
+      Đăng nhập với Google
+     </button>
+    </div>
+    <div class="footer">
+     Bằng việc tiếp tục, bạn đồng ý với
+     <a href="#">
+      Điều khoản sử dụng
+     </a>
+     ,
+     <a href="#">
+      Chính sách bảo mật
+     </a>
+     ,
+     <a href="#">
+      Quy chế
+     </a>
+     ,
+     <a href="#">
+      Chính sách của chúng tôi
+     </a>
+     .
+     <br/>
+     Chưa là thành viên?
+     <a href="#">
+      Đăng ký tại đây
+     </a>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

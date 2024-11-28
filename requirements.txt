@@ -1,0 +1,5 @@
+create a validation.js file - create a errors object
+create a validateRegister(req.body)
+create a validateLogin(req.body)
+
+update the router to accept our validation
